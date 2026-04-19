@@ -1,10 +1,10 @@
 import Modal from "@/components/Modal/Modal";
-import { getSingleNote } from "@/lib/api";
+import { getNote } from "@/lib/api";
 type Props = {
   params: { id: string };
 };
 const NotePreview = async ({ params }: Props) => {
-  const note = await getSingleNote(params.id);
+  const note = await getNote(params.id);
   return (
     <Modal>
       <h2>{note.title}</h2>
