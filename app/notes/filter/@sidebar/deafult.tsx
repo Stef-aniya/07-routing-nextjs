@@ -1,0 +1,18 @@
+import Link from "next/link";
+import css from "./SidebarNotes.module.css";
+
+const tags = ["all", "Work", "Personal", "Study"];
+const Sidebar = () => {
+  return (
+    <ul className={css.menuList}>
+      {tags.map((tag) => (
+        <li key={tag} className={css.menuItem}>
+          <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+            {tag}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+export default Sidebar;
