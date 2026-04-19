@@ -6,7 +6,7 @@ type Props = {
 const NotePreview = async ({ params }: Props) => {
   const note = await getNote(params.id);
   return (
-    <Modal>
+    <Modal onClose={() => (window.location.href = "/notes")}>
       <h2>{note.title}</h2>
       <p>{note.content}</p>
     </Modal>
