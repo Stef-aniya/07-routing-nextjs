@@ -2,7 +2,7 @@ import Link from "next/link";
 import css from "./SidebarNotes.module.css";
 
 const tags = ["all", "Work", "Personal", "Study"];
-const Sidebar = () => {
+export default function Sidebar() {
   return (
     <ul className={css.menuList}>
       {tags.map((tag) => (
@@ -14,5 +14,4 @@ const Sidebar = () => {
       ))}
     </ul>
   );
-};
-export default Sidebar;
+}
