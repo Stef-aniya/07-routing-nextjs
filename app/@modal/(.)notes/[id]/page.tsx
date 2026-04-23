@@ -4,11 +4,13 @@ type Props = {
   params: { id: string };
 };
 const NotePreview = async ({ params }: Props) => {
-  const note = await getNote(params.id);
+  const { id } = await params;
+  const note = await getNote(id);
   return (
     <Modal onClose={() => (window.location.href = "/notes")}>
       <h2>{note.title}</h2>
       <p>{note.content}</p>
+      <p> Tag: {note.tag}</p>
     </Modal>
   );
 };
