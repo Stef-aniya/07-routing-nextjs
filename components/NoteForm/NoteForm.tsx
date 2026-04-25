@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "@/lib/api";
-import type { NoteTag } from "@/types/note";
-import css from "./NoteForm.module.css";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createNote } from '@/lib/api';
+import type { NoteTag } from '@/types/note';
+import css from './NoteForm.module.css';
 
 interface NoteFormProps {
   onClose: () => void;
@@ -19,19 +19,19 @@ interface FormValues {
 
 const validationSchema = Yup.object({
   title: Yup.string()
-    .min(3, "Title must be at least 3 characters")
-    .max(50, "Title must be at most 50 characters")
-    .required("Title is required"),
-  content: Yup.string().max(500, "Content must be at most 500 characters"),
+    .min(3, 'Title must be at least 3 characters')
+    .max(50, 'Title must be at most 50 characters')
+    .required('Title is required'),
+  content: Yup.string().max(500, 'Content must be at most 500 characters'),
   tag: Yup.string()
-    .oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"] as NoteTag[])
-    .required("Tag is required"),
+    .oneOf(['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'] as NoteTag[])
+    .required('Tag is required'),
 });
 
 const initialValues: FormValues = {
-  title: "",
-  content: "",
-  tag: "Todo",
+  title: '',
+  content: '',
+  tag: 'Todo',
 };
 
 export default function NoteForm({ onClose }: NoteFormProps) {
@@ -40,7 +40,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
   const { mutate, isPending } = useMutation({
     mutationFn: createNote,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
       onClose();
     },
   });
@@ -50,11 +50,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       <Form className={css.form}>
         <div className={css.formGroup}>
           <label htmlFor="title">Title</label>
@@ -64,13 +60,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
 
         <div className={css.formGroup}>
           <label htmlFor="content">Content</label>
-          <Field
-            as="textarea"
-            id="content"
-            name="content"
-            rows={8}
-            className={css.textarea}
-          />
+          <Field as="textarea" id="content" name="content" rows={8} className={css.textarea} />
           <ErrorMessage name="content" component="span" className={css.error} />
         </div>
 
@@ -90,11 +80,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
           <button type="button" className={css.cancelButton} onClick={onClose}>
             Cancel
           </button>
-          <button
-            type="submit"
-            className={css.submitButton}
-            disabled={isPending}
-          >
+          <button type="submit" className={css.submitButton} disabled={isPending}>
             Create note
           </button>
         </div>

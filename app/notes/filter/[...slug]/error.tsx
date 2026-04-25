@@ -1,8 +1,9 @@
-"use client";
-export default function Error() {
-  return (
-    <div>
-      <h2>Something wrong</h2>
-    </div>
-  );
+'use client';
+
+interface ErrorProps {
+  error: Error;
+}
+
+export default function Error({ error }: ErrorProps) {
+  return <p>Could not fetch the list of notes. {error.message}</p>;
 }

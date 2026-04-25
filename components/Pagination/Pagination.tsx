@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import ReactPaginate from "react-paginate";
-import css from "./Pagination.module.css";
+import ReactPaginate from 'react-paginate';
+import css from './Pagination.module.css';
 
 interface PaginationProps {
   pageCount: number;
@@ -9,11 +9,7 @@ interface PaginationProps {
   onPageChange: (selectedItem: { selected: number }) => void;
 }
 
-export default function Pagination({
-  pageCount,
-  currentPage,
-  onPageChange,
-}: PaginationProps) {
+export default function Pagination({ pageCount, currentPage, onPageChange }: PaginationProps) {
   return (
     <ReactPaginate
       pageCount={pageCount}

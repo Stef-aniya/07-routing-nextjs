@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteNote } from "@/lib/api";
-import type { Note } from "@/types/note";
-import css from "./NoteList.module.css";
+import Link from 'next/link';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteNote } from '@/lib/api';
+import type { Note } from '@/types/note';
+import css from './NoteList.module.css';
 
 interface NoteListProps {
   notes: Note[];
@@ -16,7 +16,7 @@ export default function NoteList({ notes }: NoteListProps) {
   const deleteMutation = useMutation({
     mutationFn: deleteNote,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
     },
   });
 
@@ -31,10 +31,7 @@ export default function NoteList({ notes }: NoteListProps) {
             <Link href={`/notes/${note.id}`} className={css.link}>
               View details
             </Link>
-            <button
-              className={css.button}
-              onClick={() => deleteMutation.mutate(note.id)}
-            >
+            <button className={css.button} onClick={() => deleteMutation.mutate(note.id)}>
               Delete
             </button>
           </div>
